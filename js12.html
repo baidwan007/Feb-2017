@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function(){
+            var inbox = document.getElementById('todoin')
+            var button=document.getElementById('button')
+            var todolist=document.getElementById('tdlist')
+            var body=document.getElementById('b')
+            button.onclick=function(){
+                console.log("hi")
+                todo=inbox.value;
+                var d=document.createElement('div')
+                var t=document.createTextNode(todo)
+                d.appendChild(t)
+                body.appendChild(d)
+                //body.innerHTML+="<div>"+todo+"</div>";
+                //todolist.innerHTML+="<li onclick='strike(this)'>"+todo+"</li>"
+            }
+//            var strike=function(e){
+//                e.style.textDecoration="line-through"
+//            }
+            console.log('loaded')
+        }
+        var strike=function(e){
+            e.style.textDecoration="line-through"
+        }
+    </script>
+</head>
+<body id="b">
+<input id="todoin" type="text">
+<input id="button" type="button" value="Add Todo">
+<ul id="tdlist">
+
+</ul>
+</body>
+</html>

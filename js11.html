@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var fun=function(item,index,arr){
+            console.log(item)
+            console.log(index)
+            console.log(arr)
+            //arr[index]=item+1
+            return item+1
+        }
+        var mapfun=function(item,index,arr){
+            console.log(item)
+            console.log(index)
+            console.log(arr)
+           // arr[index]=item+1
+            return item+1
+        }
+        var redfun=function(acc,item,index,arr){
+//            if(index==0){
+//                acc=0;
+//            }
+            console.log(acc+" "+item)
+            return acc+item
+        }
+        window.onload=function(){
+            a=[1,2,3,4,5,6]
+//            b=a.forEach(fun)
+//            b=a.map(mapfun)
+             sum=a.reduce(redfun)
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
