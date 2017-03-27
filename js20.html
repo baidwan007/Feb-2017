@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        todolist=JSON.parse(localStorage.getItem('todos'))
+        if(!todolist){
+            todolist=[]
+            localStorage.setItem('todos',JSON.stringify(todolist))
+        }
+        window.onload=function(){
+            refreshview()
+            var input=document.getElementById('input')
+            var addbtn=document.getElementById('add')
+            var clearbtn=document.getElementById('clear')
+            var list=document.getElementById('list')
+
+            addbtn.onclick=function(){
+                //local storage update
+                var value=input.value
+                addit(value)
+                //refresh view
+                refreshview()
+            }
+            clearbtn.onclick=function(){
+                //local storage update
+                clearit()
+                //refresh
+                refreshview()
+            }
+        }
+        var addit=function(value){
+            //console.log(value)
+            var todoobj={todoval:value,done:false}
+            todolist.push(todoobj)
+            localStorage.setItem('todos',JSON.stringify(todolist))
+        }
+        var refreshview=function(){
+			var list=document.getElementById('list')
+            todolist=JSON.parse(localStorage.getItem('todos'))
+            console.log(todolist)
+            var string=""
+            for(var i=0;i<todolist.length;i++){
+                var obj=todolist[i]
+                string+="<li id="+i+"><input type='checkbox'onchange='setDone(this)'" +(obj.done?" checked":" ") +"><span"+(obj.done?" style='text-decoration:line-through'":"")+">"+obj.todoval+"</span><input type='button' value='DONE'></li>"
+            }
+            list.innerHTML=string;
+        }
+        var setDone=function(e){
+            console.log(e.parentNode.id)
+            console.log(typeof(e.parentNode.id))
+            todolist[e.parentNode.id].done=!todolist[e.parentNode.id].done
+            localStorage.setItem('todos',JSON.stringify(todolist))
+            refreshview()
+        }
+    </script>
+</head>
+<body>
+    <input id="input" type="text">
+    <input id="add" type="button" value="ADD">
+    <input id="clear" type="button" value="CLEAR">
+    <ul id="list">
+
+    </ul>
+</body>
+</html>
